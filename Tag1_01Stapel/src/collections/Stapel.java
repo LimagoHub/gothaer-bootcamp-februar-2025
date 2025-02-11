@@ -6,24 +6,31 @@ public class Stapel<HERBERT> {
     private HERBERT []data;
     private int index;
 
-    public Stapel() {
+    public Stapel() throws StapelException {
         this(DEFAULT_SIZE);
     }
 
-    public Stapel(int size) {
-        data = (HERBERT[])new Object[size > 1? size: DEFAULT_SIZE];
-        index = 0;
+    public Stapel(int size) throws StapelException {
+        try {
+            data = (HERBERT[])new Object[size];
+            index = 0;
+        } catch (NegativeArraySizeException e) {
+            throw new StapelException("init", e);
+        }
     }
 
 
-    public void push(HERBERT value)
-    {
-        if(isFull()) return;
-        data[index++] = value;
+    public void push(HERBERT value) throws StapelException {
+
+        try {
+            data[index++] = value;
+        } catch (RuntimeException e) {
+            throw new StapelException("Overflow", e);
+        }
     }
 
-    public HERBERT pop(){
-        if(isEmpty()) return null;
+    public HERBERT pop() throws StapelException {
+        if(isEmpty()) throw new StapelException("Underflow");
         return data[--index];
     }
 
