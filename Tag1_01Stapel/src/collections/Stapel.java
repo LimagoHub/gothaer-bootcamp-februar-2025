@@ -1,9 +1,9 @@
 package collections;
 
-public class Stapel {
+public class Stapel<HERBERT> {
 
     private static final int DEFAULT_SIZE = 10;
-    private int []data;
+    private HERBERT []data;
     private int index;
 
     public Stapel() {
@@ -11,19 +11,19 @@ public class Stapel {
     }
 
     public Stapel(int size) {
-        data = new int[size > 1? size: DEFAULT_SIZE];
+        data = (HERBERT[])new Object[size > 1? size: DEFAULT_SIZE];
         index = 0;
     }
 
 
-    public void push(int value)
+    public void push(HERBERT value)
     {
         if(isFull()) return;
         data[index++] = value;
     }
 
-    public int pop(){
-        if(isEmpty()) return 0;
+    public HERBERT pop(){
+        if(isEmpty()) return null;
         return data[--index];
     }
 
