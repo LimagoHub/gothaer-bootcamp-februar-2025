@@ -2,20 +2,24 @@ package gui;
 
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MyMenuBar extends MenuBar {
 
-    public MyMenuBar() {
+    public MyMenuBar(PaintClone paintClone) {
         Menu menu;
         MenuItem menuItem;
 
         menu = new Menu("Datei");
         menuItem = new MenuItem("beenden");
+        menuItem.addActionListener(e->paintClone.beenden());
         menu.add(menuItem);
         add(menu);
 
         menu = new Menu("Formen");
         menuItem = new MenuItem("Linie");
+        menuItem.addActionListener(e->paintClone.setForm(PaintClone.Form.LINIE));
         menu.add(menuItem);
 
         menuItem = new MenuItem("Rechteck");
@@ -30,5 +34,32 @@ public class MyMenuBar extends MenuBar {
         menu.add(menuItem);
 
         add(menu);
+
+
+        menu = new Menu("Farben");
+        menuItem = new MenuItem("Weiss");
+        menuItem.addActionListener(e->paintClone.setForm(PaintClone.Form.LINIE));
+        menu.add(menuItem);
+
+        menuItem = new MenuItem("Rot");
+        menu.add(menuItem);
+
+        menuItem = new MenuItem("Blau");
+        menu.add(menuItem);
+
+        menu.addSeparator();
+
+        menuItem = new MenuItem("Grün");
+        menu.add(menuItem);
+
+        menuItem = new MenuItem("Gelb");
+        menu.add(menuItem);
+
+        menuItem = new MenuItem("Pink");
+        menu.add(menuItem);
+
+        add(menu);
+
+
     }
 }
