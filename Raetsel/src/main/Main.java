@@ -12,6 +12,9 @@ class A {
     static{
         System.out.println("1 ");
     }
+    {
+        System.out.println("6 ");
+    }
 
     public A() {
         System.out.println("2 ");

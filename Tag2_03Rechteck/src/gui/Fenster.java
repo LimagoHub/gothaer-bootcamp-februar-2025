@@ -2,11 +2,10 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
-public class Fenster extends Frame implements KeyListener {
+import java.awt.event.*;
+import static java.awt.event.KeyEvent.*;
+import static java.lang.Math.*;
+public class Fenster extends Frame implements KeyListener, MouseMotionListener {
 
     private static final int SIZE = 500;
     private String message = "Hallo";
@@ -16,6 +15,7 @@ public class Fenster extends Frame implements KeyListener {
         setSize(SIZE, SIZE);
         x = y = SIZE / 2;
         addKeyListener(this);
+        addMouseMotionListener(this);
         setVisible(true);
     }
 
@@ -36,14 +36,35 @@ public class Fenster extends Frame implements KeyListener {
 
     @Override
     public void keyPressed(final KeyEvent e) {
-        message= "Eine Taste wurde gedrückt!";
-        if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
-            dispose();
+        message= "Eine Taste wurde gedrückt!";1
+
+        int a = abs(-20);
+
+        switch (e.getKeyCode()) {
+            case VK_UP->y-=5;
+            case VK_DOWN->y+=5;
+            case VK_LEFT->x-=5;
+            case VK_RIGHT->x+=5;
+            case VK_ESCAPE->dispose();
+
+        }
         repaint();
     }
 
     @Override
     public void keyReleased(final KeyEvent e) {
 
+    }
+
+    @Override
+    public void mouseDragged(final MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseMoved(final MouseEvent e) {
+        x+=(e.getX()-x) / 50;
+        y+=(e.getY()-y) / 50;
+        repaint();
     }
 }
